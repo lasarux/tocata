@@ -2,6 +2,7 @@
 
 -- icons from https://www.creativetail.com/icons/
 -- under Attribution 4.0 International (CC BY 4.0)
+-- Sound effects obtained from https://www.zapsplat.com
 
 --kangoroo
 a1 = {
@@ -16,6 +17,7 @@ a1 = {
 --lion
 a2 = {
   image = "images/animals/lion.png",
+  sound = "sounds/animals/lion.mp3",
   type = "animal",
   l10n = {
       es = "leon",
@@ -36,6 +38,7 @@ a3 = {
 --duck
 a4 = {
   image = "images/animals/duck.png",
+  sound = "sounds/animals/duck.mp3",
   type = "animal",
   l10n = {
       es = "pato",
@@ -86,6 +89,7 @@ a8 = {
 --bird
 a9 = {
   image = "images/animals/bird.png",
+  sound = "sounds/animals/bird.mp3",
   type = "animal",
   l10n = {
       es = "pajaro",
@@ -126,6 +130,7 @@ a12 = {
 --cat
 a13 = {
     image = "images/animals/cat.png",
+    sound = "sounds/animals/cat.mp3",
     type = "animal",
     l10n = {
         es = "gato",
@@ -146,6 +151,7 @@ a14 = {
 --chickend
 a15 = {
     image = "images/animals/chicken.png",
+    sound = "sounds/animals/chicken.mp3",
     type = "animal",
     l10n = {
         es = "gallina",
@@ -166,6 +172,7 @@ a16 = {
 --cow
 a17 = {
     image = "images/animals/cow.png",
+    sound = "sounds/animals/cow.mp3",
     type = "animal",
     l10n = {
         es = "vaca",
@@ -186,6 +193,7 @@ a18 = {
 --dinosaur
 a19 = {
     image = "images/animals/dinosaur.png",
+    sound = "sounds/animals/dinosaur.mp3",
     type = "animal",
     l10n = {
         es = "dinosaurio",
@@ -196,9 +204,113 @@ a19 = {
 --dog
 a20 = {
     image = "images/animals/dog.png",
+    sound = "sounds/animals/dog.mp3",
     type = "animal",
     l10n = {
         es = "perro",
         en = "dog"
+    }
+}
+
+--dolphin
+a21 = {
+    image = "images/animals/dolphin.png",
+    type = "animal",
+    l10n = {
+        es = "delfin",
+        en = "dolphin"
+    }
+}
+
+--dove
+a22 = {
+    image = "images/animals/dove.png",
+    type = "animal",
+    l10n = {
+        es = "paloma",
+        en = "dove"
+    }
+}
+
+--elephant
+a23 = {
+    image = "images/animals/elephant.png",
+    sound = "sounds/animals/elephant.mp3",
+    type = "animal",
+    l10n = {
+        es = "elefante",
+        en = "elephant"
+    }
+}
+
+--fish
+a24 = {
+    image = "images/animals/fish.png",
+    sound = "sounds/animals/fish.mp3",
+    type = "animal",
+    l10n = {
+        es = "pescado",
+        en = "fish"
+    }
+}
+
+--flamingo
+a25 = {
+    image = "images/animals/flamingo.png",
+    type = "animal",
+    l10n = {
+        es = "flamingo",
+        en = "flamingo"
+    }
+}
+
+--fox
+a26 = {
+    image = "images/animals/fox.png",
+    type = "animal",
+    l10n = {
+        es = "zorro",
+        en = "fox"
+    }
+}
+
+--frog
+a27 = {
+    image = "images/animals/frog.png",
+    type = "animal",
+    l10n = {
+        es = "rana",
+        en = "frog"
+    }
+}
+
+--giraffe
+a28 = {
+    image = "images/animals/giraffe.png",
+    type = "animal",
+    l10n = {
+        es = "jirafa",
+        en = "giraffe"
+    }
+}
+
+--gorilla
+a29 = {
+    image = "images/animals/gorilla.png",
+    type = "animal",
+    l10n = {
+        es = "gorila",
+        en = "gorilla"
+    }
+}
+
+--horse
+a30 = {
+    image = "images/animals/horse.png",
+    sound = "sounds/animals/horse.mp3",
+    type = "animal",
+    l10n = {
+        es = "caballo",
+        en = "horse"
     }
 }
