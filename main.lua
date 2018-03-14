@@ -1,8 +1,10 @@
+-- initial vars
 FIGURE = {}
 local CONFIG = {} -- to keep it separate from the global env
 
 lastkey = ''
--- scale = 8
+s = nil
+
 GREEN = {0x60, 0x90, 0xd0, 255}
 BLACK = {0, 0, 0, 255}
 WHITE = {255, 255, 255, 255}
@@ -13,7 +15,7 @@ B = BLACK
 TOP = 30
 LANG = "es"
 
-
+-- function to check keys in a table
 local function has_value (tab, val)
     for index, value in pairs(tab) do
         -- We grab the first index of our sub-table instead
@@ -25,6 +27,7 @@ local function has_value (tab, val)
     return false
 end
 
+-- first run
 function love.load()
     -- first load
     f, err = love.filesystem.load("objects.lua")
@@ -67,6 +70,7 @@ function love.load()
     
 end
 
+-- draw new frame
 function love.draw()
     -- love.graphics.setCanvas(canvas)
     love.graphics.setFont(Font)
@@ -97,6 +101,7 @@ function love.draw()
 
 end
 
+-- check key pressed
 function love.keypressed(key)
     if key == 'escape' then
         love.event.quit()
@@ -143,7 +148,11 @@ function love.keypressed(key)
         key = lastkey
     end
     lastkey = key
+    -- stop playing object sound
+    if s then
+        s:stop()
+    end
+    -- play key stroke without echo
     sound:stop()
     sound:play()
-  
 end
