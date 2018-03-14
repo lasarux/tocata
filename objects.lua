@@ -3,6 +3,7 @@
 -- icons from https://www.creativetail.com/icons/
 -- under Attribution 4.0 International (CC BY 4.0)
 -- Sound effects obtained from https://www.zapsplat.com
+-- Pronunciation obtained from https://www.forbo.com (CC BY-NC-SA 3.0)
 
 --kangoroo
 a1 = {
@@ -259,7 +260,7 @@ a25 = {
     image = "images/animals/flamingo.png",
     type = "animal",
     l10n = {
-        es = "flamingo",
+        es = "flamenco",
         en = "flamingo"
     }
 }
@@ -310,7 +311,7 @@ a30 = {
     sound = "sounds/animals/horse.mp3",
     type = "animal",
     l10n = {
-        es = "caballo",
-        en = "horse"
+        es = { "caballo", "words/animals/caballo.mp3" },
+        en = { "horse", "words/animals/horse.mp3" },
     }
 }

@@ -33,12 +33,21 @@ function love.load()
     f, err = love.filesystem.load("objects.lua")
     setfenv(f, CONFIG)
     f()
-
+    
     n = "a" .. math.random(TOP)
     c = CONFIG[n]
-    figure_current = {
-        c["l10n"][LANG], love.graphics.newImage(c["image"])
-    }
+    if c["l10n"][LANG] and c["l10n"][LANG][2] then
+        figure_current = {
+            c["l10n"][LANG][1], love.graphics.newImage(c["image"]), love.audio.newSource(c["l10n"][LANG][2], "static")
+        }
+    else
+        figure_current = {
+            c["l10n"][LANG], love.graphics.newImage(c["image"]), ""
+        }
+    end
+    time = love.timer.getTime()
+    word_played = false
+
 
     love.window.setMode(320,200, {highdpi=high_dpi, fullscreen=true})
 
@@ -86,6 +95,7 @@ function love.draw()
     -- love.graphics.clear()
     love.graphics.setColor(WHITE)
     love.graphics.setFont(font_small)
+    print (figure_current[1])
     if figure_current then
         local width = font_small:getWidth(figure_current[1])
         love.graphics.print(figure_current[1], (160 - width) / 2, 170, 0, 1, 1)
@@ -98,7 +108,12 @@ function love.draw()
     if figure_current then
         love.graphics.draw(figure_current[2], 30, 50)
     end
-
+    if (love.timer.getTime() - time) > 2 and not word_played then
+        if figure_current[3] ~= "" then
+            figure_current[3]:play()
+            word_played = true
+        end
+    end
 end
 
 -- check key pressed
@@ -121,11 +136,21 @@ function love.keypressed(key)
         else
             LANG = "es"
         end
+        -- TODO: create a function to load resources
         c = CONFIG[n]
-        figure_current = {
-            c["l10n"][LANG], love.graphics.newImage(c["image"])
-        }
+        if c["l10n"][LANG] and c["l10n"][LANG][2] then
+            figure_current = {
+                c["l10n"][LANG][1], love.graphics.newImage(c["image"]), love.audio.newSource(c["l10n"][LANG][2], "static")
+            }
+        else
+            figure_current = {
+                c["l10n"][LANG], love.graphics.newImage(c["image"]), ""
+            }
+        end
+        time = love.timer.getTime()
+        word_played = false
         key = lastkey
+        return
     elseif key == "capslock" then
         CAPS = not CAPS
         if CAPS then
@@ -138,9 +163,18 @@ function love.keypressed(key)
     elseif key ~= lastkey then
         n = "a" .. math.random(TOP)
         c = CONFIG[n]
-        figure_current = {
-            c["l10n"][LANG], love.graphics.newImage(c["image"])
-        }
+        -- load resources (text, image and pronunciation)
+        if c["l10n"][LANG] and c["l10n"][LANG][2] then
+            figure_current = {
+                c["l10n"][LANG][1], love.graphics.newImage(c["image"]), love.audio.newSource(c["l10n"][LANG][2], "static")
+            }
+        else
+            figure_current = {
+                c["l10n"][LANG], love.graphics.newImage(c["image"]), ""
+            }
+        end
+        time = love.timer.getTime()
+        word_played = false
     end
 
     --avoid multi keys
@@ -148,6 +182,7 @@ function love.keypressed(key)
         key = lastkey
     end
     lastkey = key
+    time = love.timer.getTime()
     -- stop playing object sound
     if s then
         s:stop()
