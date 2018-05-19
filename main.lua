@@ -3,6 +3,8 @@ FIGURE = {}
 local CONFIG = {} -- to keep it separate from the global env
 
 lastkey = ''
+mouse = {}
+mouseColor = {0, 0, 0, 220}
 s = nil
 
 GREEN = {0x60, 0x90, 0xd0, 255}
@@ -79,6 +81,16 @@ function love.load()
     
 end
 
+function love.update()
+    mx, my = love.mouse.getPosition()
+    if mx ~= mouse.x or my ~= mouse.y then
+        mouse.x, mouse.y = love.mouse.getPosition()
+        mouseColor = {love.math.random()*255, love.math.random()*255, love.math.random()*255, 220}
+    end
+end
+
+
+
 -- draw new frame
 function love.draw()
     -- love.graphics.setCanvas(canvas)
@@ -95,7 +107,6 @@ function love.draw()
     -- love.graphics.clear()
     love.graphics.setColor(WHITE)
     love.graphics.setFont(font_small)
-    print (figure_current[1])
     if figure_current then
         local width = font_small:getWidth(figure_current[1])
         love.graphics.print(figure_current[1], (160 - width) / 2, 170, 0, 1, 1)
@@ -108,6 +119,11 @@ function love.draw()
     if figure_current then
         love.graphics.draw(figure_current[2], 30, 50)
     end
+    
+    -- mouse pointer
+    love.graphics.setColor(mouseColor)
+    love.graphics.circle("fill", mouse.x/scalex, mouse.y/scaley, 10)
+    
     if (love.timer.getTime() - time) > 2 and not word_played then
         if figure_current[3] ~= "" then
             figure_current[3]:play()

@@ -250,7 +250,7 @@ a24 = {
     sound = "sounds/animals/fish.mp3",
     type = "animal",
     l10n = {
-        es = "pescado",
+        es = "pez",
         en = "fish"
     }
 }
