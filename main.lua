@@ -153,9 +153,7 @@ end
 
 -- check button 1 from mouse pressed
 function love.mousepressed(x, y, button, istouch)
-   if button == 1 then -- Versions prior to 0.10.0 use the MouseConstant 'l'
-      changeObject()
-   end
+    changeObject()
 end
 
 -- check key pressed
