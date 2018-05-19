@@ -1,3 +1,4 @@
+-- love2d >0.10.0
 -- initial vars
 FIGURE = {}
 local CONFIG = {} -- to keep it separate from the global env
@@ -17,6 +18,8 @@ B = BLACK
 TOP = 30
 LANG = "es"
 
+
+
 -- function to check keys in a table
 local function has_value (tab, val)
     for index, value in pairs(tab) do
@@ -27,6 +30,23 @@ local function has_value (tab, val)
     end
 
     return false
+end
+
+function changeObject()
+    n = "a" .. math.random(TOP)
+    c = CONFIG[n]
+    -- load resources (text, image and pronunciation)
+    if c["l10n"][LANG] and c["l10n"][LANG][2] then
+        figure_current = {
+            c["l10n"][LANG][1], love.graphics.newImage(c["image"]), love.audio.newSource(c["l10n"][LANG][2], "static")
+        }
+    else
+        figure_current = {
+            c["l10n"][LANG], love.graphics.newImage(c["image"]), ""
+        }
+    end
+    time = love.timer.getTime()
+    word_played = false
 end
 
 -- first run
@@ -90,7 +110,6 @@ function love.update()
 end
 
 
-
 -- draw new frame
 function love.draw()
     -- love.graphics.setCanvas(canvas)
@@ -130,6 +149,13 @@ function love.draw()
             word_played = true
         end
     end
+end
+
+-- check button 1 from mouse pressed
+function love.mousepressed(x, y, button, istouch)
+   if button == 1 then -- Versions prior to 0.10.0 use the MouseConstant 'l'
+      changeObject()
+   end
 end
 
 -- check key pressed
@@ -177,20 +203,7 @@ function love.keypressed(key)
             B = BLACK
         end
     elseif key ~= lastkey then
-        n = "a" .. math.random(TOP)
-        c = CONFIG[n]
-        -- load resources (text, image and pronunciation)
-        if c["l10n"][LANG] and c["l10n"][LANG][2] then
-            figure_current = {
-                c["l10n"][LANG][1], love.graphics.newImage(c["image"]), love.audio.newSource(c["l10n"][LANG][2], "static")
-            }
-        else
-            figure_current = {
-                c["l10n"][LANG], love.graphics.newImage(c["image"]), ""
-            }
-        end
-        time = love.timer.getTime()
-        word_played = false
+        changeObject()
     end
 
     --avoid multi keys
