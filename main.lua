@@ -5,14 +5,14 @@ local CONFIG = {} -- to keep it separate from the global env
 
 lastkey = ''
 mouse = {}
-mouseColor = {0, 0, 0, 220}
+mouseColor = {0, 0, 0, 0.85}
 s = nil
 
-GREEN = {0x60, 0x90, 0xd0, 255}
-BLACK = {0, 0, 0, 255}
-WHITE = {255, 255, 255, 255}
+GREEN = {0x60/255., 0x90/255., 0xd0/255., 1}
+BLACK = {0, 0, 0, 1}
+WHITE = {1, 1, 1, 1}
 CAPS = false
-KANGOROO = {0xb3, 0xa5, 0xd8, 0xff}
+KANGOROO = {0xb3/255., 0xa5/255., 0xd8/255., 1}
 F = GREEN
 B = BLACK
 TOP = 30
@@ -73,7 +73,7 @@ function love.load()
 
     love.window.setMode(320,200, {highdpi=high_dpi, fullscreen=true})
 
-    high_dpi = love.window.getPixelScale()
+    high_dpi = love.window.getDPIScale()
     screen_modes = love.window.getFullscreenModes()
     window_width = love.graphics.getWidth()
     window_height = love.graphics.getHeight()
@@ -105,7 +105,7 @@ function love.update()
     mx, my = love.mouse.getPosition()
     if mx ~= mouse.x or my ~= mouse.y then
         mouse.x, mouse.y = love.mouse.getPosition()
-        mouseColor = {love.math.random()*255, love.math.random()*255, love.math.random()*255, 220}
+        mouseColor = {love.math.random(), love.math.random(), love.math.random(), 0.85}
     end
 end
 
